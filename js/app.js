@@ -32,27 +32,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── INTERSECTION OBSERVER (SCROLL REVEAL) ──
+    // ── UPDATED INTERSECTION OBSERVER (SCROLL REVEAL) ──
     const revealEls = document.querySelectorAll('.reveal');
     if (revealEls.length > 0) {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, idx) => {
                 if (entry.isIntersecting) {
-                    // Stagger activation execution sequence smoothly
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, idx * 60);
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-        revealEls.forEach(el => observer.observe(el));
+        revealEls.forEach(el => {
+            // Immediately show if already in viewport
+            if (el.getBoundingClientRect().top < window.innerHeight) {
+                el.classList.add('visible');
+            } else {
+                observer.observe(el);
+            }
+        });
     }
 
     // ── PARTICLE CANVAS ANIMATION BLOCK ──
@@ -70,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const side = Math.random();
             let x, y;
             
-            // Cluster 60% of particles toward top-right, 40% toward bottom-left
             if (side < 0.6) {
                 x = W * 0.5 + Math.random() * W * 0.55;
                 y = Math.random() * H * 0.45;
