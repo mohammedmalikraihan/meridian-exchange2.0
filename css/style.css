@@ -71,7 +71,7 @@ body {
     text-decoration: none;
 }
 .nav-logo-img {
-    height: 42px;          /* Clean, optimized banner profile height */
+    height: 60px;          /* Clean, optimized banner profile height */
     width: auto;           /* Maintains perfect aspect ratio */
     object-fit: contain;
     transition: transform 0.3s ease;
