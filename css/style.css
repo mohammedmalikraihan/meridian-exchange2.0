@@ -46,8 +46,8 @@ body {
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    color: #ffffff !important;
-    /* Temporary debug: remove this 'background' line once fixed */
+    visibility: visible !important;
+    opacity: 1 !important;
     background: transparent; 
 }
 
@@ -60,7 +60,8 @@ body {
     text-shadow: 0 0 30px rgba(0, 188, 212, 0.4);
     margin-bottom: 15px;
     position: relative;
-    z-index: 2;
+    z-index: 5;
+    visibility: visible !important;
 }
 
 #cover .subtitle {
@@ -69,14 +70,14 @@ body {
     letter-spacing: 2px;
     margin-bottom: 20px;
     position: relative;
-    z-index: 2;
+    z-index: 5;
 }
 
 #cover .meta-info, #cover .bottom-bar {
     color: #ffffff !important;
     opacity: 0.9;
     position: relative;
-    z-index: 2;
+    z-index: 5;
 }
 
 /* --- Animations --- */
@@ -84,7 +85,8 @@ body {
     opacity: 0; transform: translateY(30px);
     transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* Force visibility for elements that shouldn't be hidden */
+.reveal.visible { opacity: 1 !important; transform: translateY(0); visibility: visible !important; }
 
 /* --- Layout --- */
 .container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
