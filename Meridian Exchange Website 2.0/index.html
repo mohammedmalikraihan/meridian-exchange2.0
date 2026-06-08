@@ -1,7 +1,10 @@
-<nav class="navbar">
+Here is the updated code layout. The global navbar has been pre-integrated directly above your styles and content section, linking your newly uploaded `Zenith Nexus Logo.png` as the home anchor to automatically handle the top scroll execution.
+
+```html
+<nav class="navbar" id="top">
     <div class="nav-container">
         <div class="logo">
-            <a href="#top" aria-label="Scroll back to Top">
+            <a href="#top" aria-label="Scroll back to top area">
                 <img src="Zenith Nexus Logo.png" alt="Zenith Nexus Corporate Logo" class="nav-logo-img">
             </a>
         </div>
@@ -18,9 +21,9 @@
 </nav>
 
 <style>
-    /* Global Navigation Helper Styles */
+    /* Global Navigation Framework Adjustments */
     html {
-        scroll-behavior: smooth; /* Enables smooth animated scrolling sitewide */
+        scroll-behavior: smooth;
     }
 
     .navbar {
@@ -32,6 +35,7 @@
         z-index: 1000;
         border-bottom: 1px solid #233554;
         padding: 12px 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     .nav-container {
@@ -48,7 +52,7 @@
         align-items: center;
     }
 
-    /* Fixed containment dimensions for your crisp corporate png asset */
+    /* Fixed containment dimensions for your brand logo asset */
     .nav-logo-img {
         height: 38px;
         width: auto;
@@ -91,7 +95,7 @@
         cursor: pointer;
     }
 
-    /* Content & Sponsorship Specific Framework Variables */
+    /* Sponsorship Section Styles */
     :root {
         --bg-dark: #0a192f;
         --card-bg: #112240;
@@ -106,6 +110,7 @@
         padding: 100px 0;
         color: var(--text-bright);
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        margin-top: 60px; /* Offset to keep global fixed header layout clear */
     }
 
     .section-header {
@@ -272,7 +277,6 @@
         transform: translateY(-2px);
     }
 
-    /* Responsive Breakpoints */
     @media (max-width: 768px) {
         .menu-toggle {
             display: block;
@@ -300,15 +304,12 @@
             text-align: center;
             gap: 8px;
         }
-
         .tier-row-preview .cell-value {
             text-align: center;
         }
-
         .tier-row-preview.labels {
             display: none;
         }
-
         .teaser-overlay {
             height: 80%;
         }
@@ -391,7 +392,7 @@
 </section>
 
 <script>
-    // Logic handles the mobile responsive fold toggle menu
+    // Logic controls mobile folder toggle sequences smoothly
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -401,3 +402,5 @@
         });
     }
 </script>
+
+```
