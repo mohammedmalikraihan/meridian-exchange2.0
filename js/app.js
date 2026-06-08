@@ -32,19 +32,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ── INTERSECTION OBSERVER (SCROLL REVEAL) ──
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length > 0) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    // Stagger activation execution sequence smoothly
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, idx * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealEls.forEach(el => observer.observe(el));
+    }
+
     // ── PARTICLE CANVAS ANIMATION BLOCK ──
     const canvas = document.getElementById('particle-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let W, H, particles = [], animId;
 
-        // Function to handle resizing dynamically
         function resize() {
             W = canvas.width  = window.innerWidth;
             H = canvas.height = window.innerHeight;
         }
 
-        // Particle generator with top-right and bottom-left clustering algorithms
         function mkParticle() {
             const side = Math.random();
             let x, y;
@@ -72,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         }
 
-        // Initialize array with 900 active particle vectors
         function init() {
             particles = [];
             for (let i = 0; i < 900; i++) {
@@ -80,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Core animation rendering loop
         function draw() {
             ctx.clearRect(0, 0, W, H);
             for (let i = 0; i < particles.length; i++) {
@@ -90,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.life++;
                 
                 const progress = p.life / p.maxLife;
-                // Soft fade-in at birth, sharp fade-out near structural max-life cycle
                 const fade = progress < 0.15 ? progress / 0.15 : progress > 0.75 ? 1 - (progress - 0.75) / 0.25 : 1;
                 
                 ctx.beginPath();
@@ -98,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fillStyle = `rgba(0,188,212,${p.alpha * fade})`;
                 ctx.fill();
                 
-                // Respawn particle once life cycles complete
                 if (p.life >= p.maxLife) {
                     particles[i] = mkParticle();
                 }
@@ -106,13 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
             animId = requestAnimationFrame(draw);
         }
 
-        // Event hooks to handle cross-device viewport changes
         window.addEventListener('resize', () => { 
             resize(); 
             init(); 
         });
 
-        // Initialize and fire up frame rendering
         resize(); 
         init(); 
         draw();
