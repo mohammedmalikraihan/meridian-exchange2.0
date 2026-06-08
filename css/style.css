@@ -9,6 +9,19 @@ body {
     background-color: #0a192f;
     color: #e6f1ff;
     overflow-x: hidden;
+    position: relative; /* Context layout base for the canvas */
+}
+
+/* Background Particle System Canvas Context */
+#particle-canvas {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; /* Allows user clicks to pass right through to content */
+    z-index: 0;           /* Sits behind content, navbar, and cards */
+    opacity: 0.45;
 }
 
 /* Color Variables */
@@ -19,13 +32,15 @@ body {
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .no-margin { margin: 0; }
-.relative-z { position: relative; z-index: 5; }
+.relative-z { position: relative; z-index: 5; } /* Keeps content stacks safe over canvas background */
 
 /* Layout Blocks */
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2; /* Ensures containers float cleanly above canvas coordinates */
 }
 .page {
     min-height: 100vh;
@@ -53,10 +68,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px; /* Slightly tightened vertical spacing */
+    padding: 15px 40px; 
     box-sizing: border-box;
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-    z-index: 100;
+    z-index: 100; /* Stays fixed above both particles and page layouts */
 }
 
 /* Logo Image Container Styling */
@@ -111,6 +126,7 @@ p { font-size: 1.1rem; line-height: 1.6; }
     position: absolute; top: -10%; right: -10%; width: 50vw; height: 50vw;
     border: 2px solid rgba(100, 255, 218, 0.05); border-radius: 43%;
     animation: rotateWave 25s infinite linear; pointer-events: none;
+    z-index: 1;
 }
 @keyframes rotateWave { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 .meta-info { margin-top: 30px; font-size: 1.2rem; display: flex; gap: 30px; justify-content: center; }
@@ -118,6 +134,7 @@ p { font-size: 1.1rem; line-height: 1.6; }
     position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
     background: rgba(17, 34, 64, 0.9); border-top: 1px solid #64ffda;
     text-align: center; letter-spacing: 2px; font-size: 0.9rem; color: #ccd6f6;
+    z-index: 2;
 }
 
 /* Responsive Grid Implementations */
@@ -229,7 +246,7 @@ p { font-size: 1.1rem; line-height: 1.6; }
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 25, 47, 0.85); /* Matches your navbar blur background */
+    background: rgba(10, 25, 47, 0.85); /* Matches navbar blur background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,5 +311,5 @@ p { font-size: 1.1rem; line-height: 1.6; }
     .nav-links.active { display: flex; }
     .flow-container, .arch-grid, .sponsor-grid, .speaker-grid { grid-template-columns: 1fr; }
     .meta-info { flex-direction: column; gap: 10px; }
-    .nav-logo-img { height: 35px; } /* Slightly more compact layout boundary on mobile profiles */
+    .nav-logo-img { height: 35px; } /* Compact layout boundary on mobile profiles */
 }
