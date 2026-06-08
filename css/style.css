@@ -22,23 +22,10 @@ body {
     opacity: 0.65;
 }
 
-/* --- Typography & Helpers --- */
-.font-condensed { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
-.font-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
-.teal { color: #00bcd4; }
-.gold { color: #ffd700; }
-.italic { font-style: italic; }
-.font-muted { color: #8892b0; }
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.no-margin { margin: 0; }
-.relative-z { position: relative; z-index: 10; }
-.display-block { display: block; }
-
-/* --- Cover Section: Refined Hierarchy --- */
+/* --- Consolidated Cover Section --- */
 #cover {
     position: relative !important;
-    z-index: 1 !important;
+    z-index: 10 !important; /* Forces content above particles */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -50,32 +37,34 @@ body {
 
 #cover h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 3.5rem;             /* Reduced to be less overpowering */
-    font-weight: 700;
-    letter-spacing: 0.2rem;       /* Elegant spacing */
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
     color: #ffffff !important;
-    text-shadow: none;             /* Cleaner, modern aesthetic */
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1rem !important;
+    text-shadow: none;
     position: relative;
-    z-index: 5;
+    z-index: 10;
 }
 
 #cover .subtitle {
-    font-size: 2.2rem;             /* Subtitle is now the visual anchor */
-    font-weight: 600;
-    color: #00bcd4 !important;      /* Using your brand teal */
+    font-size: 2.2rem !important;
+    font-weight: 600 !important;
+    color: #00bcd4 !important;
     text-transform: uppercase;
     letter-spacing: 0.05rem;
     margin-bottom: 30px;
     position: relative;
-    z-index: 5;
+    z-index: 10;
+    display: block !important;
 }
 
-#cover .meta-info {
-    font-size: 1rem;
-    color: #8892b0 !important;
+/* --- Meta Info & Positioning --- */
+.meta-info, .bottom-bar {
+    color: #ffffff !important;
+    opacity: 0.9;
     position: relative;
-    z-index: 5;
+    z-index: 10;
 }
 
 #cover .bottom-bar {
@@ -85,15 +74,14 @@ body {
     color: #556080;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
-    z-index: 5;
 }
 
 /* --- Animations & Layout --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
 .reveal.visible { opacity: 1 !important; transform: translateY(0); }
-.container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
 .page { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; }
-.section-padding { padding: 100px 0; }
 
 /* --- Navbar & Progress --- */
 .navbar {
@@ -106,15 +94,6 @@ body {
 .nav-links a { color: #ccd6f6; text-decoration: none; font-size: 14px; transition: color 0.3s; }
 .nav-links a:hover { color: #00bcd4; }
 #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #00bcd4; width: 0%; z-index: 101; }
-
-/* --- Global Headings --- */
-h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 5rem; font-weight: 800; letter-spacing: 5px; margin-bottom: 10px; }
-h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; color: #ffffff; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
-h2::after { content: ''; display: block; width: 60px; height: 2px; background: #00bcd4; margin-top: 15px; }
-
-/* --- UI Components & Grid --- */
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.rt-card { background: #101f38; padding: 30px; border-top: 4px solid rgba(0, 188, 212, 0.3); }
 
 /* --- Quote Styling --- */
 .quote-style {
