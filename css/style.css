@@ -7,12 +7,17 @@ body {
     color: #e6f1ff;
     overflow-x: hidden;
     position: relative;
+    height: 100%;
 }
 
 /* --- Particle Canvas: Pushed to the very back --- */
 #particle-canvas {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: -1; opacity: 0.65;
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    pointer-events: none; 
+    z-index: -1; 
+    opacity: 0.65;
 }
 
 /* --- Typography & Helpers --- */
@@ -33,7 +38,7 @@ body {
 /* --- Cover Section: Forced to sit above particles --- */
 #cover {
     position: relative;
-    z-index: 1; /* Sits above the canvas */
+    z-index: 1; 
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -42,6 +47,8 @@ body {
     text-align: center;
     padding: 0 20px;
     color: #ffffff !important;
+    /* Temporary debug: remove this 'background' line once fixed */
+    background: transparent; 
 }
 
 #cover h1 {
@@ -68,6 +75,8 @@ body {
 #cover .meta-info, #cover .bottom-bar {
     color: #ffffff !important;
     opacity: 0.9;
+    position: relative;
+    z-index: 2;
 }
 
 /* --- Animations --- */
