@@ -17,8 +17,8 @@ body {
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    pointer-events: none !important; /* Critical: Allows clicks to pass through to the text */
-    z-index: -1 !important;          /* Force behind all other content */
+    pointer-events: none !important; 
+    z-index: -1 !important;          
     opacity: 0.65;
 }
 
@@ -55,11 +55,11 @@ body {
 
 #cover h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 3.5rem !important; /* Reduced for better balance */
+    font-size: 3.5rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.2rem;
     color: #ffffff !important;
-    text-shadow: none;           /* Modern clean look */
+    text-shadow: none;           
     margin-bottom: 0.5rem;
     position: relative;
     z-index: 5;
@@ -67,9 +67,9 @@ body {
 }
 
 #cover .subtitle {
-    font-size: 2.2rem !important; /* Larger than title to be the anchor */
+    font-size: 2.2rem !important; 
     font-weight: 600 !important;
-    color: #00bcd4 !important;    /* Teal brand color */
+    color: #00bcd4 !important;    
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     margin-bottom: 40px;
@@ -158,4 +158,17 @@ h2::after { content: ''; display: block; width: 60px; height: 2px; background: #
     margin: 40px 0;
     line-height: 1.6;
     background: rgba(16, 31, 56, 0.4);
+}
+
+/* --- Mobile Optimization --- */
+@media (max-width: 600px) {
+    /* Shrink the large headings for mobile screens */
+    #cover h1 { font-size: 2.5rem !important; }
+    #cover .subtitle { font-size: 1.5rem !important; }
+    h1 { font-size: 3rem !important; }
+    h2 { font-size: 2rem !important; }
+    
+    /* Ensure padding is tighter on mobile to save space */
+    .section-padding { padding: 50px 0 !important; }
+    #cover { padding: 0 15px !important; }
 }
