@@ -144,3 +144,16 @@ h2::after { content: ''; display: block; width: 60px; height: 2px; background: #
 
 /* --- Contact --- */
 .contact-box { background: #101f38; max-width: 480px; margin: 40px auto; padding: 40px; border: 1px solid rgba(255, 215, 0, 0.1); color: #ffffff; }
+
+/* --- Quote Styling --- */
+.quote-style {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: #e6f1ff;
+    border-left: 3px solid #00bcd4;
+    padding: 20px 0 20px 25px;
+    margin: 40px 0;
+    line-height: 1.6;
+    background: rgba(16, 31, 56, 0.4); /* Matches your card background */
+}
