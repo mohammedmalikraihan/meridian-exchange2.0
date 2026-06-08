@@ -46,24 +46,39 @@ body {
 /* Custom Sticky Navbar */
 .navbar {
     position: fixed;
-    top: 0; width: 100%;
+    top: 0; 
+    width: 100%;
     background: rgba(10, 25, 47, 0.85);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 10px 40px; /* Reduced vertical padding for image balance */
     box-sizing: border-box;
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
     z-index: 100;
 }
+
+/* Logo Image Container Styling */
 .navbar .logo {
-    font-weight: bold;
-    color: #e6f1ff;
-    letter-spacing: 1px;
-    border: 1px solid #64ffda;
-    padding: 5px 10px;
+    display: flex;
+    align-items: center;
 }
+.navbar .logo a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+.nav-logo-img {
+    height: 42px;          /* Clean, optimized banner profile height */
+    width: auto;           /* Maintains perfect aspect ratio */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.nav-logo-img:hover {
+    transform: scale(1.02); /* Subtle pop on interaction */
+}
+
 .nav-links {
     list-style: none;
     display: flex;
@@ -189,4 +204,5 @@ p { font-size: 1.1rem; line-height: 1.6; }
     .nav-links.active { display: flex; }
     .flow-container, .arch-grid, .sponsor-grid { grid-template-columns: 1fr; }
     .meta-info { flex-direction: column; gap: 10px; }
+    .nav-logo-img { height: 35px; } /* Slightly more compact layout boundary on mobile profiles */
 }
