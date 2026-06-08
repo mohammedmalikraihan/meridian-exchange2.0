@@ -25,7 +25,7 @@ body {
 /* --- Consolidated Cover Section --- */
 #cover {
     position: relative !important;
-    z-index: 10 !important; /* Forces content above particles */
+    z-index: 10 !important;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -77,8 +77,16 @@ body {
 }
 
 /* --- Animations & Layout --- */
-.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.visible { opacity: 1 !important; transform: translateY(0); }
+/* DEFAULT: Visible to prevent "blank screen" if JS is slow */
+.reveal { 
+    opacity: 1 !important; 
+    transform: translateY(0) !important; 
+    transition: opacity 0.8s ease, transform 0.8s ease; 
+}
+
+/* If you prefer the fade-in effect, you can keep the JS logic, 
+   but this ensures the content isn't invisible on load. */
+.reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
 .container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 10; }
 .page { min-height: 100vh; position: relative; display: flex; flex-direction: column; justify-content: center; }
