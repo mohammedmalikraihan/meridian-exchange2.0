@@ -1,406 +1,539 @@
-Here is the updated code layout. The global navbar has been pre-integrated directly above your styles and content section, linking your newly uploaded `Zenith Nexus Logo.png` as the home anchor to automatically handle the top scroll execution.
-
-```html
-<nav class="navbar" id="top">
-    <div class="nav-container">
-        <div class="logo">
-            <a href="#top" aria-label="Scroll back to top area">
-                <img src="Zenith Nexus Logo.png" alt="Zenith Nexus Corporate Logo" class="nav-logo-img">
-            </a>
-        </div>
-        
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">☰</button>
-        
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#framework">Themes</a></li>
-            <li><a href="#programme">Programme</a></li>
-            <li><a href="#sponsorship">Sponsorship</a></li>
-        </ul>
-    </div>
-</nav>
-
 <style>
-    /* Global Navigation Framework Adjustments */
-    html {
-        scroll-behavior: smooth;
-    }
 
-    .navbar {
-        background-color: #0a192f;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: 1px solid #233554;
-        padding: 12px 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-    }
-
-    /* Fixed containment dimensions for your brand logo asset */
-    .nav-logo-img {
-        height: 38px;
-        width: auto;
-        object-fit: contain;
-        display: block;
-        transition: opacity 0.25s ease;
-    }
-
-    .nav-logo-img:hover {
-        opacity: 0.85;
-    }
-
-    .nav-links {
-        display: flex;
-        list-style: none;
-        gap: 30px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .nav-links a {
-        color: #8892b0;
-        text-decoration: none;
-        font-size: 0.95rem;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-        transition: color 0.25s ease;
-    }
-
-    .nav-links a:hover {
-        color: #64ffda;
-    }
-
-    .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        color: #e6f1ff;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    /* Sponsorship Section Styles */
     :root {
+
         --bg-dark: #0a192f;
+
         --card-bg: #112240;
+
         --teal: #64ffda;
+
         --text-bright: #e6f1ff;
+
         --text-muted: #8892b0;
+
         --gold: #f4d068;
+
     }
+
+
 
     .sponsorship-section {
+
         background: radial-gradient(circle at top right, #112240 0%, #0a192f 100%);
+
         padding: 100px 0;
+
         color: var(--text-bright);
+
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        margin-top: 60px; /* Offset to keep global fixed header layout clear */
+
     }
+
+
 
     .section-header {
+
         text-align: center;
+
         margin-bottom: 60px;
+
     }
+
+
 
     .section-header h2 {
+
         font-size: 2.5rem;
+
         text-transform: uppercase;
+
         letter-spacing: 2px;
+
         margin-bottom: 15px;
+
         color: var(--text-bright);
+
     }
+
+
 
     .section-header h2 span {
+
         color: var(--teal);
+
     }
+
+
 
     .section-header p {
+
         color: var(--text-muted);
+
         font-size: 1.1rem;
+
         max-width: 600px;
+
         margin: 0 auto;
+
     }
+
+
 
     /* Value Pillars Grid */
+
     .pillars-grid {
+
         display: grid;
+
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
         gap: 25px;
+
         margin-bottom: 70px;
+
     }
+
+
 
     .pillar-card {
+
         background: var(--card-bg);
+
         border: 1px solid #233554;
+
         padding: 30px;
+
         border-radius: 6px;
+
         transition: all 0.3s ease;
+
     }
+
+
 
     .pillar-card:hover {
+
         transform: translateY(-5px);
+
         border-color: var(--teal);
+
     }
+
+
 
     .pillar-icon {
+
         font-size: 1.5rem;
+
         color: var(--teal);
+
         margin-bottom: 15px;
+
         font-weight: bold;
+
     }
+
+
 
     .pillar-card h3 {
+
         font-size: 1.25rem;
+
         margin-bottom: 12px;
+
         color: var(--text-bright);
+
     }
+
+
 
     .pillar-card p {
+
         color: var(--text-muted);
+
         font-size: 0.95rem;
+
         line-height: 1.6;
+
     }
+
+
 
     /* Interactive Teaser Dashboard */
+
     .framework-teaser {
+
         background: rgba(17, 34, 64, 0.5);
+
         border: 1px solid rgba(100, 255, 218, 0.2);
+
         backdrop-filter: blur(12px);
+
         border-radius: 8px;
+
         padding: 40px;
+
         position: relative;
+
         overflow: hidden;
+
     }
+
+
 
     .teaser-overlay {
+
         position: absolute;
+
         bottom: 0;
+
         left: 0;
+
         right: 0;
+
         height: 60%;
+
         background: linear-gradient(to top, #0a192f 20%, rgba(10, 25, 47, 0.9) 50%, rgba(10, 25, 47, 0) 100%);
+
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
+
         justify-content: flex-end;
+
         padding-bottom: 40px;
+
         text-align: center;
+
     }
+
+
 
     .teaser-header {
+
         display: flex;
+
         justify-content: space-between;
+
         align-items: center;
+
         border-bottom: 1px solid #233554;
+
         padding-bottom: 20px;
+
         margin-bottom: 25px;
+
     }
+
+
 
     .teaser-title {
+
         font-weight: bold;
+
         text-transform: uppercase;
+
         letter-spacing: 1px;
+
         font-size: 0.9rem;
+
         color: var(--text-muted);
+
     }
+
+
 
     .tier-row-preview {
+
         display: grid;
+
         grid-template-columns: 2fr repeat(4, 1fr);
+
         gap: 15px;
+
         padding: 18px 0;
+
         border-bottom: 1px solid rgba(35, 53, 84, 0.4);
+
         font-size: 0.95rem;
+
     }
+
+
 
     .tier-row-preview.labels {
+
         color: var(--teal);
+
         font-weight: 600;
+
         font-size: 0.85rem;
+
         text-transform: uppercase;
+
         letter-spacing: 1px;
+
     }
+
+
 
     .tier-row-preview .feature-name {
+
         color: var(--text-bright);
+
         font-weight: 500;
+
     }
+
+
 
     .tier-row-preview .cell-value {
+
         color: var(--text-muted);
+
         text-align: center;
+
     }
+
+
 
     /* Refined CTA Trigger */
+
     .secure-cta-title {
+
         color: var(--text-bright);
+
         font-size: 1.4rem;
+
         margin-bottom: 15px;
+
         font-weight: 600;
+
         letter-spacing: 0.5px;
+
     }
+
+
 
     .secure-cta-btn {
+
         background: transparent;
+
         color: var(--teal);
+
         border: 2px solid var(--teal);
+
         padding: 16px 36px;
+
         font-size: 1rem;
+
         font-weight: bold;
+
         text-transform: uppercase;
+
         letter-spacing: 2px;
+
         border-radius: 4px;
+
         cursor: pointer;
+
         transition: all 0.3s ease;
+
         box-shadow: 0 4px 20px rgba(100, 255, 218, 0.1);
+
     }
+
+
 
     .secure-cta-btn:hover {
+
         background: rgba(100, 255, 218, 0.1);
+
         box-shadow: 0 4px 30px rgba(100, 255, 218, 0.2);
+
         transform: translateY(-2px);
+
     }
+
+
 
     @media (max-width: 768px) {
-        .menu-toggle {
-            display: block;
-        }
-
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background-color: #0a192f;
-            border-bottom: 1px solid #233554;
-            padding: 20px;
-            gap: 15px;
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
 
         .tier-row-preview {
+
             grid-template-columns: 1fr;
+
             text-align: center;
+
             gap: 8px;
+
         }
+
         .tier-row-preview .cell-value {
+
             text-align: center;
+
         }
+
         .tier-row-preview.labels {
+
             display: none;
+
         }
+
         .teaser-overlay {
+
             height: 80%;
+
         }
+
     }
+
 </style>
 
+
+
 <section id="sponsorship" class="sponsorship-section">
+
     <div class="container">
+
         
+
         <div class="section-header">
+
             <h2>Sponsorship <span>Engagement</span></h2>
+
             <p>Align your enterprise with an invite-only gathering of sovereign technology pioneers and national security architectural decision-makers.</p>
+
         </div>
+
+
 
         <div class="pillars-grid">
+
             <div class="pillar-card">
+
                 <div class="pillar-icon">01</div>
+
                 <h3>Policy Access</h3>
+
                 <p>Engage in direct closed-door briefings and structural panel streams alongside ministerial-level ecosystem regulators.</p>
+
             </div>
+
             <div class="pillar-card">
+
                 <div class="pillar-icon">02</div>
+
                 <h3>Category Exclusivity</h3>
+
                 <p>Secure absolute tier dominance as the sole technological authority representing your operational vector marketplace.</p>
+
             </div>
+
             <div class="pillar-card">
+
                 <div class="pillar-icon">03</div>
+
                 <h3>Working Group Placement</h3>
+
                 <p>Command an active, embedded presence within our post-summit strategic technical committees for a 12-month sequence.</p>
+
             </div>
+
         </div>
+
+
 
         <div class="framework-teaser">
+
             <div class="teaser-header">
+
                 <span class="teaser-title">Asset Allocation Blueprint</span>
+
                 <span style="color: var(--gold); font-size: 0.8rem; letter-spacing: 1px; font-weight: bold;">🔒 COMMERCIAL IN CONFIDENCE</span>
+
             </div>
+
+
 
             <div class="tier-row-preview labels">
+
                 <div>Partnership Vectors</div>
+
                 <div style="text-align:center;">Founding</div>
+
                 <div style="text-align:center;">Strategic</div>
+
                 <div style="text-align:center;">Supporting</div>
+
                 <div style="text-align:center;">Reception</div>
+
             </div>
 
+
+
             <div class="tier-row-preview">
+
                 <div class="feature-name">Roundtable Authority Allocation</div>
+
                 <div class="cell-value">Chairperson</div>
+
                 <div class="cell-value">Moderator</div>
+
                 <div class="cell-value">Participant</div>
+
                 <div class="cell-value">—</div>
+
             </div>
 
+
+
             <div class="tier-row-preview">
+
                 <div class="feature-name">Executive Strategic Keynote Slots</div>
+
                 <div class="cell-value">Plenary Solo</div>
+
                 <div class="cell-value">Panel Member</div>
+
                 <div class="cell-value">—</div>
+
                 <div class="cell-value">—</div>
+
             </div>
+
+
 
             <div class="tier-row-preview" style="border-bottom: none;">
+
                 <div class="feature-name">Delegated Ministerial Passes</div>
+
                 <div class="cell-value">10 Access</div>
+
                 <div class="cell-value">5 Access</div>
+
                 <div class="cell-value">3 Access</div>
+
                 <div class="cell-value">2 Access</div>
+
             </div>
+
+
 
             <div class="teaser-overlay">
+
                 <p class="secure-cta-title">Unlock Full Framework Metrics & Commercial Packages</p>
+
                 <button class="secure-cta-btn" id="openFormBtn">
+
                     Request Secure Blueprint Access
+
                 </button>
+
             </div>
+
         </div>
-
-    </div>
-</section>
-
-<script>
-    // Logic controls mobile folder toggle sequences smoothly
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    }
-</script>
-
-```
