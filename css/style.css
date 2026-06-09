@@ -4,14 +4,14 @@ html, body {
     padding: 0;
     width: 100%;
     min-height: 100vh;
+    background-color: #f0f4f5 !important; 
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f0f4f5; 
     color: #1a202c;
     overflow-x: hidden;
     position: relative;
 }
 
-/* --- High-Performance Animated Background --- */
+/* --- Animated Gradient Background --- */
 body::before {
     content: "";
     position: fixed;
@@ -19,7 +19,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0; 
     background: linear-gradient(125deg, #f0f4f5 40%, #d1e8eb 60%, #e0c997 100%);
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
@@ -34,7 +34,7 @@ body::before {
 /* --- Sections --- */
 section {
     position: relative;
-    z-index: 1;
+    z-index: 1; 
     background: transparent !important;
 }
 
@@ -79,6 +79,9 @@ section {
     align-items: center;
     text-align: center;
     padding: 80px 20px 0;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
 }
 
 #cover h1 {
@@ -100,7 +103,7 @@ section {
 
 /* --- Containers & Cards --- */
 .container {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.7) !important;
     padding: 40px;
     border-radius: 12px;
     backdrop-filter: blur(5px);
