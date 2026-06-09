@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function draw() {
-            // Clear the canvas area transparently
+            // Clears the frame, making it transparent so the canvas background (CSS) shows through.
             ctx.clearRect(0, 0, W, H); 
 
             for (let i = 0; i < particles.length; i++) {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 
-                // Using black to verify particle visibility against website background
+                // Use a dark color for testing visibility
                 ctx.fillStyle = `rgba(0, 0, 0, ${0.8 * fade})`; 
                 ctx.fill();
                 
