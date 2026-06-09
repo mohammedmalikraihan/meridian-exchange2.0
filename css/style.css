@@ -5,26 +5,36 @@ html, body {
     width: 100%;
     min-height: 100vh;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f0f4f5; /* Base page color behind the canvas */
+    background-color: #f0f4f5; 
     color: #1a202c;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* --- Particle Canvas (Fixed Base) --- */
-#particle-canvas {
+/* --- High-Performance Animated Background --- */
+body::before {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Allows clicks to pass through to content */
-    z-index: 1;           /* Just above the body background */
+    z-index: -1;
+    background: linear-gradient(125deg, #f0f4f5 40%, #d1e8eb 60%, #e0c997 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
 }
 
-/* --- Sections (Transparent to reveal particles) --- */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Sections --- */
 section {
     position: relative;
-    z-index: 2;           /* Sits above the canvas */
+    z-index: 1;
     background: transparent !important;
 }
 
@@ -40,7 +50,7 @@ section {
     align-items: center; 
     padding: 15px 40px; 
     border-bottom: 1px solid #e2e8f0; 
-    z-index: 100; /* Stays above sections and canvas */
+    z-index: 100;
 }
 
 #progress-bar { 
@@ -68,7 +78,7 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 20px 0; /* Extra top padding for navbar */
+    padding: 80px 20px 0;
 }
 
 #cover h1 {
@@ -90,7 +100,7 @@ section {
 
 /* --- Containers & Cards --- */
 .container {
-    background: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
+    background: rgba(255, 255, 255, 0.85);
     padding: 40px;
     border-radius: 12px;
     backdrop-filter: blur(5px);
