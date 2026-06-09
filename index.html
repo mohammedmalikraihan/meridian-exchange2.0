@@ -40,7 +40,27 @@
         <div class="container relative-z reveal">
             <h1 class="fade-in">MERIDIAN EXCHANGE</h1>
             <p class="subtitle">Digital Sovereignty Resilience</p>
-            <div class="meta-info font-mono">
+            
+            <div id="countdown" class="countdown-container font-mono">
+                <div class="time-block">
+                    <span id="days" class="number">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="time-block">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">Hrs</span>
+                </div>
+                <div class="time-block">
+                    <span id="minutes" class="number">00</span>
+                    <span class="label">Mins</span>
+                </div>
+                <div class="time-block">
+                    <span id="seconds" class="number">00</span>
+                    <span class="label">Secs</span>
+                </div>
+            </div>
+
+            <div class="meta-info font-mono" style="margin-top: 20px;">
                 <span>📍 Dubai, UAE</span>
                 <span>📅 February 2027</span>
             </div>
@@ -60,7 +80,6 @@
                 <div class="col font-muted">
                     <p>The 2026 cloud infrastructure disruption served as a global wake-up call, exposing the fragile "policy trap" where national security remains tethered to external digital dependencies. Reliance without resilience is no longer an option.</p>
                     <p>The <strong>Meridian Exchange</strong> introduces the Supply Chain Security Doctrine. We move beyond simple procurement toward a framework of digital sovereignty, ensuring that the critical components of the modern state—from chips to clouds—are verifiable, secure, and sovereign.</p>
-                    
                     <div class="icon-grid font-mono">
                         <div class="icon-box">Shape Policy</div>
                         <div class="icon-box">Meet Decision-Makers</div>
@@ -149,7 +168,6 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="flow-container font-mono">
                 <div class="flow-step">
                     <div class="step-num font-condensed">1</div>
@@ -205,7 +223,6 @@
         <div class="container reveal">
             <h2>Featured Speakers</h2>
             <p class="font-muted subtitle-margin">Distinguished global authorities and policy architects lead the Meridian Exchange dialogue.</p>
-            
             <div class="speaker-grid">
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/antonio-rotondo-eebc-europeanemiratibusinesscouncil-ccirc-chamberofcommerce" target="_blank" rel="noopener noreferrer" class="speaker-link">
@@ -220,7 +237,6 @@
                         <p class="speaker-company font-muted">European-Emirati Business Council</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/amrocoffeeman" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -234,7 +250,6 @@
                         <p class="speaker-company font-muted">Data Center Prime (DCP)</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/jonathan-a-kwofie-25aa2414" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -248,7 +263,6 @@
                         <p class="speaker-company font-muted">Dubai Financial Services Authority (DFSA)</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/drnaderghazal" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -262,7 +276,6 @@
                         <p class="speaker-company font-muted">African-Asian Council for AI & Cybersecurity</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/muhammadshafiq" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -276,7 +289,6 @@
                         <p class="speaker-company font-muted">New York University (NYU) Abu Dhabi, UAE</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/v4vijay" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -290,7 +302,6 @@
                         <p class="speaker-company font-muted">Cyber Security Unit, MOEI</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/arimazzeoinnovation" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -304,7 +315,6 @@
                         <p class="speaker-company font-muted">Canadian University Dubai</p>
                     </div>
                 </div>
-
                 <div class="speaker-card card-hover">
                     <a href="https://www.linkedin.com/in/heideyoung" target="_blank" rel="noopener noreferrer" class="speaker-link">
                         <div class="speaker-img-container">
@@ -442,7 +452,6 @@
             <h1 class="fade-in">MERIDIAN EXCHANGE</h1>
             <div class="gold-divider"></div>
             <p class="subtitle">Sovereignty in the Supply Chain of Everything</p>
-
             <div class="contact-box text-left card-hover">
                 <h3>Mohammed Malik Raihan</h3>
                 <p class="teal no-margin font-mono">Director of Strategic Relations</p>
@@ -451,12 +460,38 @@
                 <p class="font-muted"><strong>Email:</strong> mohammed@zenithnexus.com</p>
                 <p class="font-muted"><strong>Org:</strong> Zenith Nexus</p>
             </div>
-
             <div class="deco-dots font-mono">••••••••••</div>
             <p class="confidential-tag font-mono">Confidential & Commercial in Confidence</p>
         </div>
     </section>
 
+    <script>
+        // Countdown Timer Logic
+        const eventDate = new Date("February 1, 2027 00:00:00").getTime();
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            }
+
+            if (distance < 0) {
+                clearInterval(timer);
+                const container = document.getElementById("countdown");
+                if(container) container.innerHTML = "Event in Progress";
+            }
+        }, 1000);
+    </script>
     <script src="js/app.js"></script>
 </body>
 </html>
