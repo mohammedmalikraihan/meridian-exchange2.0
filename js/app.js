@@ -55,9 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Countdown Timer Logic
+   // 4. Countdown Timer Logic
     function updateCountdown() {
-        const targetDate = new Date("February 1, 2027 00:00:00").getTime();
+        // Updated to September 8, 2026
+        const targetDate = new Date("September 8, 2026 00:00:00").getTime();
         const now = new Date().getTime();
         const diff = targetDate - now;
 
@@ -72,10 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const sEl = document.getElementById("seconds");
 
         if (dEl && hEl && mEl && sEl) {
-            dEl.innerText = String(d).padStart(2, '0');
-            hEl.innerText = String(h).padStart(2, '0');
-            mEl.innerText = String(m).padStart(2, '0');
-            sEl.innerText = String(s).padStart(2, '0');
+            // If the event has passed, show 00 instead of negative numbers
+            dEl.innerText = String(Math.max(0, d)).padStart(2, '0');
+            hEl.innerText = String(Math.max(0, h)).padStart(2, '0');
+            mEl.innerText = String(Math.max(0, m)).padStart(2, '0');
+            sEl.innerText = String(Math.max(0, s)).padStart(2, '0');
         }
     }
 
