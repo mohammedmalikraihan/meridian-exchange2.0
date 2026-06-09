@@ -19,7 +19,7 @@ html, body {
     height: 100% !important;
     pointer-events: none !important; 
     z-index: -1 !important; /* Fixed: Sits behind everything */
-    background-color: #f0f4f5 !important; /* Your requested contrast background */
+    background-color: transparent !important; /* Now handled by JS in draw() */
     opacity: 1 !important;
 }
 
@@ -34,7 +34,7 @@ html, body {
 /* Sections are now slightly transparent to show particles behind them */
 section {
     position: relative;
-    background: rgba(255, 255, 255, 0.85) !important; /* Increased transparency slightly to reveal particles */
+    background: rgba(255, 255, 255, 0.85) !important;
     z-index: 1;
 }
 
@@ -42,7 +42,7 @@ section {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 0 20px;
-    background: rgba(255, 255, 255, 0.5) !important; /* Highly transparent for the cover section */
+    background: rgba(255, 255, 255, 0.5) !important;
 }
 
 #cover h1 {
