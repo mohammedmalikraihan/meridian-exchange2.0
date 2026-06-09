@@ -87,13 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize countdown if elements exist
     if (document.getElementById("countdown")) {
         setInterval(updateCountdown, 1000);
         updateCountdown();
     }
 
-    // 5. Particle Canvas Animation Block (Updated for Light Theme)
+    // 5. Particle Canvas Animation Block
     const canvas = document.getElementById('particle-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -123,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 x, y,
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
-                r: Math.random() < 0.7 ? 1 : 1.8,
-                alpha: 0.1 + Math.random() * 0.3, 
+                r: Math.random() < 0.7 ? 1.5 : 2.2, // Slightly larger radius
+                alpha: 0.6 + Math.random() * 0.3,   // Increased base alpha
                 life: 0,
                 maxLife: 280 + Math.random() * 200
             };
@@ -150,9 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                // Updated to Teal: #008fa3
-                ctx.fillStyle = `rgba(0, 143, 163, ${p.alpha * fade})`;
+                ctx.shadowBlur = 5;            // Adds a soft glow
+                ctx.shadowColor = '#008b8b';   // Matches the particle color
+                ctx.fillStyle = `rgba(0, 139, 139, ${p.alpha * fade})`;
                 ctx.fill();
+                ctx.shadowBlur = 0;            // Reset shadow
                 
                 if (p.life >= p.maxLife) {
                     particles[i] = mkParticle();
