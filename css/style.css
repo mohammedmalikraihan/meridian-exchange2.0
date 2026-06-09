@@ -4,7 +4,7 @@ html, body {
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #f0f4f5 !important; 
+    background-color: #f0f4f5 !important;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #1a202c;
     overflow-x: hidden;
@@ -19,7 +19,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; 
+    z-index: 0; /* Ensures the gradient is behind content */
     background: linear-gradient(125deg, #f0f4f5 40%, #d1e8eb 60%, #e0c997 100%);
     background-size: 400% 400%;
     animation: gradientMove 15s ease infinite;
@@ -34,8 +34,8 @@ body::before {
 /* --- Sections --- */
 section {
     position: relative;
-    z-index: 1; 
-    background: transparent !important;
+    z-index: 1; /* Sits above the gradient */
+    background-color: transparent !important;
 }
 
 /* --- Navbar (Highest Layer) --- */
@@ -63,13 +63,6 @@ section {
     z-index: 101; 
 }
 
-/* --- Typography & Helpers --- */
-.font-condensed { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
-.font-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
-.teal { color: #008fa3; }
-.gold { color: #b78a00; }
-.font-muted { color: #4a5568; }
-
 /* --- Cover Section --- */
 #cover {
     min-height: 100vh;
@@ -79,16 +72,14 @@ section {
     align-items: center;
     text-align: center;
     padding: 80px 20px 0;
-    background: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(5px);
-    border-radius: 12px;
+    /* Removed the forced white background on cover to let gradient show through */
+    background: transparent !important;
 }
 
 #cover h1 {
     font-family: 'Barlow Condensed', sans-serif; 
     font-size: 5rem; 
     font-weight: 800; 
-    letter-spacing: 0.2rem; 
     color: #1a202c;
     margin-bottom: 0.5rem;
 }
@@ -109,25 +100,24 @@ section {
     backdrop-filter: blur(5px);
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto; /* Added margin for separation */
     position: relative;
     z-index: 2;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.section-padding { padding: 100px 0; }
+/* --- Typography & Helpers --- */
+.font-condensed { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
+.font-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+.teal { color: #008fa3; }
+.gold { color: #b78a00; }
 
 h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; color: #1a202c; margin-bottom: 40px; text-transform: uppercase; }
 h2::after { content: ''; display: block; width: 60px; height: 2px; background: #008fa3; margin-top: 15px; }
 
 .card-hover { transition: 0.3s; border: 1px solid #e2e8f0; background: #ffffff; padding: 30px; }
-.card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 35px -10px rgba(0, 143, 163, 0.2); border-color: #008fa3; }
+.card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 35px -10px rgba(0, 143, 163, 0.2); }
 
 /* --- Reveal Animation --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* --- Responsive --- */
-@media (max-width: 900px) {
-    .menu-toggle { display: block; }
-    .nav-links { background: #ffffff; border-bottom: 1px solid #e2e8f0; }
-}
