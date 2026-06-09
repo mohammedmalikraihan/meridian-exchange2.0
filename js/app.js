@@ -151,8 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                // Deep Teal Color
-                ctx.fillStyle = `rgba(0, 139, 139, ${p.alpha * fade})`;
+                
+                // TEST: Using black to verify particle visibility
+                ctx.fillStyle = `rgba(0, 0, 0, ${0.8 * fade})`; 
                 ctx.fill();
                 
                 if (p.life >= p.maxLife) {
