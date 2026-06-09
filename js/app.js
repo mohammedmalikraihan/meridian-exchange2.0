@@ -65,68 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById("days").innerText = String(d).padStart(2, '0');
-        document.getElementById("hours").innerText = String(h).padStart(2, '0');
-        document.getElementById("minutes").innerText = String(m).padStart(2, '0');
-        document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+        const dEl = document.getElementById("days");
+        const hEl = document.getElementById("hours");
+        const mEl = document.getElementById("minutes");
+        const sEl = document.getElementById("seconds");
+
+        if (dEl && hEl && mEl && sEl) {
+            dEl.innerText = String(d).padStart(2, '0');
+            hEl.innerText = String(h).padStart(2, '0');
+            mEl.innerText = String(m).padStart(2, '0');
+            sEl.innerText = String(s).padStart(2, '0');
+        }
     }
 
     if (document.getElementById("countdown")) {
         setInterval(updateCountdown, 1000);
         updateCountdown();
-    }
-
-    // 5. Particle Canvas Animation
-    const canvas = document.getElementById('particle-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let W, H, particles = [];
-
-        function resize() {
-            W = canvas.width = window.innerWidth;
-            H = canvas.height = window.innerHeight;
-        }
-
-        function mkParticle() {
-            return {
-                x: Math.random() * W,
-                y: Math.random() * H,
-                vx: (Math.random() - 0.5) * 0.2,
-                vy: (Math.random() - 0.5) * 0.2,
-                r: Math.random() * 2 + 1,
-                life: 0,
-                maxLife: 300 + Math.random() * 200
-            };
-        }
-
-        function init() {
-            particles = [];
-            for (let i = 0; i < 400; i++) particles.push(mkParticle());
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, W, H);
-            particles.forEach((p, i) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life++;
-                ctx.fillStyle = `rgba(0, 0, 0, ${0.5 * (1 - p.life / p.maxLife)})`;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fill();
-                if (p.life >= p.maxLife) particles[i] = mkParticle();
-            });
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener('resize', () => { resize(); init(); });
-        resize();
-        init();
-        draw();
-
-        // Canvas Test (Visible only if canvas is correctly layered)
-        console.log("Canvas test: Checking if red square renders...");
-        ctx.fillStyle = 'red';
-        ctx.fillRect(50, 50, 100, 100); 
     }
 });
