@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close menu when selecting a navigation shortcut link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             if (navLinks && menuToggle) {
@@ -122,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 x, y,
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
-                r: Math.random() < 0.7 ? 1.5 : 2.2, // Slightly larger radius
-                alpha: 0.6 + Math.random() * 0.3,   // Increased base alpha
+                r: Math.random() < 0.5 ? 2.0 : 3.0, // Larger size
+                alpha: 0.8 + Math.random() * 0.2,   // Very solid (80% to 100% opaque)
                 life: 0,
-                maxLife: 280 + Math.random() * 200
+                maxLife: 300 + Math.random() * 200
             };
         }
 
@@ -149,11 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.shadowBlur = 5;            // Adds a soft glow
-                ctx.shadowColor = '#008b8b';   // Matches the particle color
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = '#008b8b';
                 ctx.fillStyle = `rgba(0, 139, 139, ${p.alpha * fade})`;
                 ctx.fill();
-                ctx.shadowBlur = 0;            // Reset shadow
+                ctx.shadowBlur = 0;
                 
                 if (p.life >= p.maxLife) {
                     particles[i] = mkParticle();
