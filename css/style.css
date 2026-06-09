@@ -3,7 +3,7 @@ html, body {
     margin: 0; 
     padding: 0;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    /* This sets the base page color */
+    /* Force the background here */
     background-color: #f0f4f5 !important; 
     color: #1a202c;
     overflow-x: hidden;
@@ -19,7 +19,6 @@ html, body {
     height: 100% !important;
     pointer-events: none !important; 
     z-index: -1 !important; 
-    /* Canvas is transparent so the body color #f0f4f5 shows through */
     background-color: transparent !important; 
     opacity: 1 !important;
 }
@@ -34,17 +33,28 @@ html, body {
 /* --- Sections --- */
 section {
     position: relative;
-    /* Changed to transparent to allow particles to be seen behind content areas */
+    /* Ensure sections don't force a white background */
     background: transparent !important; 
     z-index: 1;
 }
 
 #cover {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 0 20px;
-    /* Changed to transparent so the canvas particles show through */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    padding: 0 20px;
+    /* Forces transparency so particles show behind content */
     background: transparent !important; 
+}
+
+/* Ensure the container inside the cover doesn't hide everything */
+#cover .container {
+    background: rgba(255, 255, 255, 0.8) !important; 
+    padding: 40px;
+    border-radius: 12px;
 }
 
 #cover h1 {
@@ -76,7 +86,6 @@ section {
     margin: 0 auto; 
     position: relative; 
     z-index: 2; 
-    /* Added background for text readability while keeping section transparent */
     background: rgba(255, 255, 255, 0.9); 
     padding: 40px;
     border-radius: 8px;
