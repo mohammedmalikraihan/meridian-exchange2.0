@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Dynamic Top Indicator Line (Scroll Progress)
+    // 1. Dynamic Top Indicator Line (Scroll Progress)
     const progressBar = document.getElementById('progress-bar');
     if (progressBar) {
         window.addEventListener('scroll', () => {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Mobile Responsive Navigation Menu Toggle
+    // 2. Mobile Responsive Navigation Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── UPDATED INTERSECTION OBSERVER (SCROLL REVEAL) ──
+    // 3. Updated Intersection Observer (Scroll Reveal)
     const revealEls = document.querySelectorAll('.reveal');
     if (revealEls.length > 0) {
         const observer = new IntersectionObserver((entries) => {
@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         revealEls.forEach(el => {
-            // Immediately show if already in viewport
             if (el.getBoundingClientRect().top < window.innerHeight) {
                 el.classList.add('visible');
             } else {
@@ -56,7 +55,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── PARTICLE CANVAS ANIMATION BLOCK ──
+    // 4. Countdown Timer Logic
+    function updateCountdown() {
+        const targetDate = new Date("February 1, 2027 00:00:00").getTime();
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById("days");
+        const hEl = document.getElementById("hours");
+        const mEl = document.getElementById("minutes");
+        const sEl = document.getElementById("seconds");
+
+        if (dEl && hEl && mEl && sEl) {
+            dEl.innerText = String(d).padStart(2, '0');
+            hEl.innerText = String(h).padStart(2, '0');
+            mEl.innerText = String(m).padStart(2, '0');
+            sEl.innerText = String(s).padStart(2, '0');
+        }
+    }
+
+    // Initialize countdown if elements exist
+    if (document.getElementById("days")) {
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    }
+
+    // 5. Particle Canvas Animation Block
     const canvas = document.getElementById('particle-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
