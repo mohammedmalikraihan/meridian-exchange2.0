@@ -136,9 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function draw() {
-            // Force a solid background color on every frame to ensure visibility
-            ctx.fillStyle = '#f0f4f5'; 
-            ctx.fillRect(0, 0, W, H); 
+            // Clear the canvas area transparently
+            ctx.clearRect(0, 0, W, H); 
 
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 
-                // TEST: Using black to verify particle visibility
+                // Using black to verify particle visibility against website background
                 ctx.fillStyle = `rgba(0, 0, 0, ${0.8 * fade})`; 
                 ctx.fill();
                 
