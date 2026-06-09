@@ -3,7 +3,7 @@ html { scroll-behavior: smooth; }
 body {
     margin: 0; padding: 0;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f8f9fa; /* Changed from white to light gray for better particle contrast */
+    background-color: transparent !important; /* Fixed: allows canvas background to show */
     color: #1a202c;
     overflow-x: hidden;
     position: relative;
@@ -17,7 +17,8 @@ body {
     width: 100% !important; 
     height: 100% !important;
     pointer-events: none !important; 
-    z-index: 0 !important; /* Particles live at the bottom layer */
+    z-index: -1 !important; /* Fixed: allows sections to sit on top */
+    background-color: #ffffff; /* Fixed: background moved here from body */
     opacity: 1 !important;
 }
 
@@ -29,10 +30,10 @@ body {
 .font-muted { color: #4a5568; }
 
 /* --- Sections --- */
-/* Sections sit above the canvas and have slight transparency to let particles through */
+/* Sections are now slightly transparent to show particles behind them */
 section {
     position: relative;
-    background: rgba(255, 255, 255, 0.92) !important; 
+    background: rgba(255, 255, 255, 0.9) !important; /* Fixed: 'glass' look */
     z-index: 1;
 }
 
@@ -40,7 +41,7 @@ section {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 0 20px;
-    background: rgba(255, 255, 255, 0.7) !important; /* Higher transparency on cover */
+    background: rgba(255, 255, 255, 0.7) !important;
 }
 
 #cover h1 {
@@ -66,7 +67,7 @@ section {
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.visible { opacity: 1 !important; transform: translateY(0); }
 
-.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
 .section-padding { padding: 100px 0; }
 
 /* --- Navbar & Progress --- */
