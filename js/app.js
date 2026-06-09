@@ -121,8 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 x, y,
                 vx: Math.cos(angle) * speed,
                 vy: Math.sin(angle) * speed,
-                r: Math.random() < 0.5 ? 2.0 : 3.0, // Larger size
-                alpha: 0.8 + Math.random() * 0.2,   // Very solid (80% to 100% opaque)
+                r: Math.random() < 0.5 ? 2.0 : 3.0,
+                alpha: 0.8 + Math.random() * 0.2,
                 life: 0,
                 maxLife: 300 + Math.random() * 200
             };
@@ -136,7 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function draw() {
-            ctx.clearRect(0, 0, W, H);
+            // Force a solid background color on every frame to ensure visibility
+            ctx.fillStyle = '#f0f4f5'; 
+            ctx.fillRect(0, 0, W, H); 
+
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
                 p.x += p.vx;
@@ -148,11 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.shadowBlur = 5;
-                ctx.shadowColor = '#008b8b';
+                // Deep Teal Color
                 ctx.fillStyle = `rgba(0, 139, 139, ${p.alpha * fade})`;
                 ctx.fill();
-                ctx.shadowBlur = 0;
                 
                 if (p.life >= p.maxLife) {
                     particles[i] = mkParticle();
