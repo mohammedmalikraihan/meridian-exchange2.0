@@ -1,25 +1,56 @@
-/* --- Global Resets & Layering --- */
+/* --- Global Resets --- */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f0f4f5; /* Base page color */
+    background-color: #f0f4f5; /* Base page color behind the canvas */
     color: #1a202c;
     overflow-x: hidden;
 }
 
-/* --- Particle Canvas (Layered at the base) --- */
+/* --- Particle Canvas (Fixed Base) --- */
 #particle-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 0; 
-    background-color: transparent;
+    pointer-events: none; /* Allows clicks to pass through to content */
+    z-index: 1;           /* Just above the body background */
+}
+
+/* --- Sections (Transparent to reveal particles) --- */
+section {
+    position: relative;
+    z-index: 2;           /* Sits above the canvas */
+    background: transparent !important;
+}
+
+/* --- Navbar (Highest Layer) --- */
+.navbar {
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    padding: 15px 40px; 
+    border-bottom: 1px solid #e2e8f0; 
+    z-index: 100; /* Stays above sections and canvas */
+}
+
+#progress-bar { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 3px; 
+    background: #008fa3; 
+    width: 0%; 
+    z-index: 101; 
 }
 
 /* --- Typography & Helpers --- */
@@ -29,13 +60,7 @@ html, body {
 .gold { color: #b78a00; }
 .font-muted { color: #4a5568; }
 
-/* --- Sections --- */
-section {
-    position: relative;
-    z-index: 1; /* Content sits ABOVE the canvas */
-    background: transparent;
-}
-
+/* --- Cover Section --- */
 #cover {
     min-height: 100vh;
     display: flex;
@@ -43,14 +68,13 @@ section {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 20px;
-    background: transparent;
+    padding: 80px 20px 0; /* Extra top padding for navbar */
 }
 
 #cover h1 {
     font-family: 'Barlow Condensed', sans-serif; 
-    font-size: 3.5rem; 
-    font-weight: 700; 
+    font-size: 5rem; 
+    font-weight: 800; 
     letter-spacing: 0.2rem; 
     color: #1a202c;
     margin-bottom: 0.5rem;
@@ -61,13 +85,12 @@ section {
     font-weight: 600; 
     color: #008fa3;
     text-transform: uppercase; 
-    letter-spacing: 0.1rem; 
     margin-bottom: 40px;
 }
 
-/* --- Components --- */
+/* --- Containers & Cards --- */
 .container {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent background */
     padding: 40px;
     border-radius: 12px;
     backdrop-filter: blur(5px);
@@ -78,34 +101,17 @@ section {
     z-index: 2;
 }
 
-.countdown-container { display: flex; justify-content: center; gap: 20px; margin: 30px 0; }
-.time-block {
-    display: flex; flex-direction: column; align-items: center;
-    background: #ffffff; padding: 15px 20px; border-radius: 4px;
-    min-width: 70px; border-bottom: 2px solid #008fa3;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
 .section-padding { padding: 100px 0; }
 
-/* --- Navbar & Progress --- */
-.navbar {
-    position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px); display: flex; justify-content: space-between;
-    align-items: center; padding: 15px 40px; border-bottom: 1px solid #e2e8f0; z-index: 100;
-}
-#progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #008fa3; width: 0%; z-index: 101; }
-
-/* --- Headings & Cards --- */
-h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 5rem; font-weight: 800; color: #1a202c; letter-spacing: 5px; }
 h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; color: #1a202c; margin-bottom: 40px; text-transform: uppercase; }
 h2::after { content: ''; display: block; width: 60px; height: 2px; background: #008fa3; margin-top: 15px; }
 
 .card-hover { transition: 0.3s; border: 1px solid #e2e8f0; background: #ffffff; padding: 30px; }
 .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 35px -10px rgba(0, 143, 163, 0.2); border-color: #008fa3; }
+
+/* --- Reveal Animation --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* --- Responsive --- */
 @media (max-width: 900px) {
