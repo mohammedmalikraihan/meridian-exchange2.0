@@ -3,7 +3,7 @@ html, body {
     margin: 0; 
     padding: 0;
     font-family: 'Barlow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    /* We set the background here to ensure the page has a base color */
+    /* This sets the base page color */
     background-color: #f0f4f5 !important; 
     color: #1a202c;
     overflow-x: hidden;
@@ -34,8 +34,8 @@ html, body {
 /* --- Sections --- */
 section {
     position: relative;
-    /* Semi-transparent white to reveal particles floating behind */
-    background: rgba(255, 255, 255, 0.8) !important; 
+    /* Changed to transparent to allow particles to be seen behind content areas */
+    background: transparent !important; 
     z-index: 1;
 }
 
@@ -43,7 +43,8 @@ section {
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 0 20px;
-    background: rgba(255, 255, 255, 0.5) !important;
+    /* Changed to transparent so the canvas particles show through */
+    background: transparent !important; 
 }
 
 #cover h1 {
@@ -69,7 +70,18 @@ section {
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.visible { opacity: 1 !important; transform: translateY(0); }
 
-.container { width: 90%; max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+.container { 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    position: relative; 
+    z-index: 2; 
+    /* Added background for text readability while keeping section transparent */
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 40px;
+    border-radius: 8px;
+}
+
 .section-padding { padding: 100px 0; }
 
 /* --- Navbar & Progress --- */
