@@ -55,37 +55,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-   // 4. Countdown Timer Logic
-    function updateCountdown() {
-        // Updated to September 8, 2026
-        const targetDate = new Date("September 8, 2026 00:00:00").getTime();
-        const now = new Date().getTime();
-        const diff = targetDate - now;
+  // 4. Updated Countdown Timer Logic
+function updateCountdown() {
+    const countdownContainer = document.getElementById("countdown");
+    if (!countdownContainer) return;
 
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
+    const targetDate = new Date("September 8, 2026 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
 
-        const dEl = document.getElementById("days");
-        const hEl = document.getElementById("hours");
-        const mEl = document.getElementById("minutes");
-        const sEl = document.getElementById("seconds");
-
-        if (dEl && hEl && mEl && sEl) {
-            // If the event has passed, show 00 instead of negative numbers
-            dEl.innerText = String(Math.max(0, d)).padStart(2, '0');
-            hEl.innerText = String(Math.max(0, h)).padStart(2, '0');
-            mEl.innerText = String(Math.max(0, m)).padStart(2, '0');
-            sEl.innerText = String(Math.max(0, s)).padStart(2, '0');
-        }
+    if (diff < 0) {
+        countdownContainer.innerHTML = "Event in Progress";
+        return;
     }
 
-    // Initialize countdown if elements exist
-    if (document.getElementById("days")) {
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const dEl = document.getElementById("days");
+    const hEl = document.getElementById("hours");
+    const mEl = document.getElementById("minutes");
+    const sEl = document.getElementById("seconds");
+
+    if (dEl && hEl && mEl && sEl) {
+        dEl.innerText = String(d).padStart(2, '0');
+        hEl.innerText = String(h).padStart(2, '0');
+        mEl.innerText = String(m).padStart(2, '0');
+        sEl.innerText = String(s).padStart(2, '0');
     }
+}
+
+// Initialize countdown if elements exist
+if (document.getElementById("countdown")) {
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+}
 
     // 5. Particle Canvas Animation Block
     const canvas = document.getElementById('particle-canvas');
